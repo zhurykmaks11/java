@@ -5,26 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarDAO {
-    private Connection connection;
+    private final Connection connection;
 
     public CarDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public void insert(Car car) throws SQLException {
-        String sql = "INSERT INTO car (make, model, year, fuel_type, body_type, color, license_plate, passenger_capacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, car.getMake());
-            preparedStatement.setString(2, car.getModel());
-            preparedStatement.setInt(3, car.getYear());
-            preparedStatement.setString(4, car.getFuelType());
-            preparedStatement.setString(5, car.getBodyType());
-            preparedStatement.setString(6, car.getColor());
-            preparedStatement.setString(7, car.getLicensePlate());
-            preparedStatement.setInt(8, car.getPassengerCapacity());
-            preparedStatement.executeUpdate();
-        }
-    }
 
     public List<Car> getAll() throws SQLException {
         List<Car> cars = new ArrayList<>();
@@ -69,7 +55,6 @@ public class CarDAO {
             preparedStatement.executeUpdate();
         }
     }
-}
 
 // Метод для вставки машини в базу даних
     public static void insertAuto(Connection connection, Car auto) throws SQLException {
@@ -86,3 +71,48 @@ public class CarDAO {
             preparedStatement.executeUpdate();
         }
     }
+
+
+    public void sortCarsByDistance(Connection connection) throws SQLException {
+        String sql = "SELECT car.make, car.model, norder.distance " +
+                "FROM car LEFT JOIN norder ON car.id = norder.id " +
+                "ORDER BY distance DESC";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            System.out.println("Cars sorted by total distance:");
+            while (resultSet.next()) {
+                String make = resultSet.getString("make");
+                String model = resultSet.getString("model");
+                double Distance = resultSet.getDouble("distance");
+                System.out.println("Car: " + make + " " + model + ", Total Distance: " + Distance);
+            }
+        }
+    }
+    // Реєстрація клієнта з хешованим паролем
+    public static void registerClient(Connection connection, Client client) throws SQLException {
+        String hashedPassword = PasswordUtil.hashPassword(client.getPassword()); // Хешування пароля
+        String sql = "INSERT INTO client (full_name, birth_date, phone_number, password) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, client.getFullName());
+            preparedStatement.setDate(2, Date.valueOf(client.getBirthDate()));
+            preparedStatement.setString(3, client.getPhoneNumber());
+            preparedStatement.setString(4, hashedPassword);
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    // Авторизація клієнта
+    public static boolean authenticateClient(Connection connection, String fullName, String password) throws SQLException {
+        String sql = "SELECT password FROM client WHERE full_name = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, fullName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("password");
+                String hashedPassword = PasswordUtil.hashPassword(password);
+                return storedPassword.equals(hashedPassword); // Перевірка пароля
+            }
+        }
+        return false;
+    }
+}

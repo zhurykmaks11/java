@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Звіти</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Відстань</th>
+            <th>Водій</th>
+            <th>Клієнт</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Використання Thymeleaf для відображення звітів -->
+        <tr th:each="report : ${reports}">
+            <td th:text="${report.id}"></td>
+            <td th:text="${report.distance}"></td>
+            <td th:text="${report.driver_id}"></td>
+            <td th:text="${report.client_id}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/reports/create">Створити новий звіт</a>
+    <a href="/cars">Return to cars</a>
+    <a href="/drivers">Список водіїв</a>
+</body>
+</html>

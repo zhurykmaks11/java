@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Список водіїв</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Список водіїв</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Ім'я</th>
+        <th>День Народження</th>
+        <th>Номер ліцензії</th>
+        <th>Телефон</th>
+        <th>Id car</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="driver : ${drivers}">
+        <td th:text="${driver.full_name}"></td>
+        <td th:text="${driver.birth_date}"></td>
+        <td th:text="${driver.driving_experience}"></td>
+        <td th:text="${driver.phone_number}"></td>
+        <td th:text="${driver.car_id}"></td>
+        <td>
+            <a th:href="@{/drivers/{id}(id=${driver.id})}">Деталі</a>
+            <a th:href="@{/drivers/delete/{id}(id=${driver.id})}" onclick="return confirm('Ви впевнені, що хочете видалити цього водія?');">Видалити</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/drivers/new">Додати водія</a>
+<a href="/cars">Return to cars</a>
+</body>
+</html>

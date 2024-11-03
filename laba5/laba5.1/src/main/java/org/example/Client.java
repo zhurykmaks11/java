@@ -2,20 +2,29 @@ package org.example;
 
 import java.time.LocalDate;
 
+
 public class Client {
     private int id;
     private String fullName;
     private LocalDate birthDate; // Залишаємо birthDate, а не dateOfBirth
     private String phoneNumber;
+    private String password; // Нове поле
 
-    public Client(int id, String fullName, LocalDate birthDate, String phoneNumber) {
+    public Client(int id, String fullName, LocalDate birthDate, String phoneNumber,String password) {
         this.id = id;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
-
+        this.password = password;
+    }
+    // Геттери і сеттери
+    public String getPassword() {
+        return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
     public int getId() {

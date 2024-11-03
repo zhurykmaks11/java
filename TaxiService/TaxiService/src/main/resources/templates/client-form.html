@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Client</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Add Client</h1>
+<form th:action="@{/clients/save}" th:object="${client}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{full_name}" required />
+
+    <label for="birth">День народження: </label>
+    <input type="date" id="birth" th:field="*{birth_date}" required>
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" th:field="*{phone_number}" required />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" th:field="*{password}" required />
+
+    <button type="submit">Save</button>
+</form>
+<a href="/clients">Назад до списку клентів</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати водія</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Додати нового водія</h1>
+<form action="#" th:action="@{/drivers/add}" th:object="${driver}" method="post">
+    <label for="name">Ім'я:</label>
+    <input type="text" id="name" th:field="*{full_name}" required>
+
+    <label for="birth">День народження: </label>
+    <input type="date" id="birth" th:field="*{birth_date}" required>
+
+    <label for="licenseNumber">Номер ліцензії:</label>
+    <input type="text" id="licenseNumber" th:field="*{driving_experience}" required>
+
+    <label for="phoneNumber">Телефон:</label>
+    <input type="text" id="phoneNumber" th:field="*{phone_number}" required>
+
+    <label for="car">Автоміль Id: </label>
+    <input type="number" id="car" th:field="*{car_id}">
+    <button type="submit">Додати водія</button>
+</form>
+<a href="/drivers">Назад до списку водіїв</a>
+</body>
+</html>

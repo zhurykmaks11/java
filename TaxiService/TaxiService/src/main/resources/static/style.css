@@ -1,0 +1,76 @@
+/* Загальні стилі для сторінки */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Таблиця автомобілів */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Посилання */
+a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #4CAF50;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Блок детальної інформації */
+div {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Стилі для списку автомобілів */
+table {
+    margin-top: 20px;
+}
+
+table a {
+    display: flex;
+    flex-direction: column;
+    color: #007BFF; /* Колір для посилань у таблиці */
+}
+
+table a:hover {
+    text-decoration: underline; /* Підкреслення для посилань при наведенні */
+}
+
+/* Стилі для заголовків */
+p strong {
+    color: #333;
+}

@@ -57,21 +57,5 @@ public class OrderDAO {
         return null;
     }
 
-    // Отримати клієнта за ID
-    private Client getClientById(int clientId) throws SQLException {
-        String sql = "SELECT * FROM client WHERE id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, clientId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return new Client(
-                        resultSet.getInt("id"),
-                        resultSet.getString("full_name"),
-                        resultSet.getDate("birth_date").toLocalDate(),
-                        resultSet.getString("phone_number")
-                );
-            }
-        }
-        return null;
-    }
+
 }

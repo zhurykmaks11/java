@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Додати автомобіль</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!-- Виправлений шлях -->
+</head>
+<body>
+<h1>Details Cars</h1>
+<div>
+    <p><strong>Mark:</strong> <span th:text="${car.make}"></span></p>
+    <p><strong>Model:</strong> <span th:text="${car.model}"></span></p>
+    <p><strong>Years creations:</strong> <span th:text="${car.year}"></span></p>
+    <p><strong>Type :</strong> <span th:text="${car.fuel_type}"></span></p>
+    <p><strong>License plate:</strong> <span th:text="${car.license_plate}"></span></p>
+    <p><strong>Number person:</strong> <span th:text="${car.passenger_Capacity}"></span></p>
+    <p><strong>Body:</strong> <span th:text="${car.body_type}"></span></p>
+    <p><strong>Color:</strong> <span th:text="${car.color}"></span></p>
+</div>
+<a href="/cars">Return to cars</a>
+</body>
+</html>

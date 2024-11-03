@@ -1,0 +1,18 @@
+<!-- driver-detail.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Деталі Водія</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<h1>Деталі Водія</h1>
+<p>ID: <span th:text="${driver.id}"></span></p>
+<p>Ім'я: <span th:text="${driver.full_name}"></span></p>
+<p>День Народження : <span th:text="${driver.birth_date}"></span></p>
+<p>Номер телефону: <span th:text="${driver.phone_number}"></span></p>
+
+<a th:href="@{/drivers}">Повернутися до списку водіїв</a>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати автомобіль</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"> <!-- Виправлений шлях -->
+</head>
+<body>
+<h1>List cars</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Mark</th>
+        <th>Model</th>
+        <th>Year</th>
+<!--        <th>Type fuel</th>-->
+<!--        <th>License plate</th>-->
+<!--        <th>Bode type</th>-->
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.make}"></td>
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.year}"></td>
+<!--        <td th:text="${car.fuel_type}"></td>-->
+<!--        <td th:text="${car.license_plate}"></td>-->
+<!--        <td th:text="${car.body_type}"></td>-->
+        <td>
+            <a th:href="@{/cars/{id}(id=${car.id})}">details</a>
+            <a th:href="@{/cars/delete/{id}(id=${car.id})}" onclick="return confirm('Ви впевнені, що хочете видалити цей автомобіль?');">Видалити</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/drivers}" style="margin-top: 20px; display: inline-block;">Перейти до Водіїв</a>
+<a href="cars/add-car">Add cars</a> <!-- Посилання для додавання нового автомобіля -->
+<a href="/clients">список клентів</a>
+<a href="/reports">Звіти</a>
+</body>
+</html>
